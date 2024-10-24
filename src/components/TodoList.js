@@ -36,29 +36,41 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={addTask}>
-        <input
-          type="text"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          placeholder="New Task"
-        />
-        <button type="submit">Add Task</button>
-      </form>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
+      <div className="w-full max-w-lg bg-white shadow-lg rounded-lg p-8">
+        <h2 className="text-2xl font-bold text-center mb-6">My To-Do List</h2>
+        <form onSubmit={addTask} className="mb-4 flex">
+          <input
+            type="text"
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            placeholder="New Task"
+            className="w-full px-4 py-2 border rounded-l-md"
+          />
+          <button type="submit" className="bg-blue-500 text-white px-6 py-2 rounded-r-md">
+            Add
+          </button>
+        </form>
 
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <input
-              type="text"
-              defaultValue={task.task}
-              onBlur={(e) => updateTask(task.id, e.target.value)}
-            />
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+        <ul className="space-y-2">
+          {tasks.map((task) => (
+            <li key={task.id} className="flex justify-between items-center">
+              <input
+                type="text"
+                defaultValue={task.task}
+                onBlur={(e) => updateTask(task.id, e.target.value)}
+                className="flex-1 px-4 py-2 border rounded-md"
+              />
+              <button
+                onClick={() => deleteTask(task.id)}
+                className="bg-red-500 text-white px-4 py-2 rounded-md ml-2"
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
